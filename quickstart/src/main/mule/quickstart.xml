@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:mqtt="http://www.mulesoft.org/schema/mule/mqtt" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/mqtt http://www.mulesoft.org/schema/mule/mqtt/current/mule-mqtt.xsd">
+	
+	<mqtt:config name="mosquitto-config" doc:name="mqtt" doc:id="bcb61f1d-0d3b-42ba-99ad-bf73fd1a3675" >
+		<mqtt:mqtt3-connection host="test.mosquitto.org" keepAlive="50">
+			<reconnection >
+				<reconnect-forever />
+			</reconnection>
+			<mqtt:mqtt3-will message="I'm out !" topic="test/mule/topic" />
+		</mqtt:mqtt3-connection>
+	</mqtt:config>
+	<flow name="PublishFlow" doc:id="79d1041a-42e2-405c-9edf-7f3efc827f4d">
+		<scheduler doc:name="Scheduler" doc:id="9d8beff1-9b40-4ca3-bcdd-6c36f7376285">
+			<scheduling-strategy>
+				<fixed-frequency />
+			</scheduling-strategy>
+		</scheduler>
+		<mqtt:publish doc:id="a5265190-dbdb-47ec-a579-048cbf6d85dc" config-ref="mosquitto-config" topic="test/mule/topic" doc:name="Publish">
+			<mqtt:message><![CDATA[#["Hello World!"]]]></mqtt:message>
+		</mqtt:publish>
+	</flow>
+	<flow name="OnNewMessage" doc:id="5c39e1c9-c457-4876-adc0-a4c688fce40c" >
+		<mqtt:listener doc:id="0c1ef434-5008-4642-a518-641dcd75234c" config-ref="mosquitto-config" doc:name="On New Message" >
+			<mqtt:subscriptions >
+				<mqtt:subscription topicFilter="test/mule/topic" />
+			</mqtt:subscriptions>
+		</mqtt:listener>
+		<logger level="INFO" doc:name="Logger" doc:id="3b0dba3b-3073-44e3-8c7b-8a9da2d37521" message="#[payload]" />
+	</flow>
+</mule>
