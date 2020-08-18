@@ -1,0 +1,260 @@
+//
+// Syntax highlighting
+//
+
+/*
+default/dot/operator/label/predefined symbol/global variable/parameter/local variable/function call/interface name/class name: #A9B7C6
+line/block comment: #808080
+keyword/comma/semicolon: #CC7832
+string: #6A8759
+number: #6897BB
+constant: #9876AA, italic
+doc comment: #629755
+function decl: #FFC66D
+field: #9876AA
+metadata: #BBB529
+type parameter: #507874
+*/
+
+
+html {
+  scroll-behavior: auto;
+}
+
+th,
+td {
+  font-size: 13px !important;
+
+  @include mq(sm) {
+    font-size: 14px !important;
+  }
+}
+
+th {
+  text-align: center;
+}
+
+::selection {
+    color: $grey-dk-300;
+    background: $yellow-200;
+}
+
+b, strong {
+    color: $yellow-300;
+}
+
+.main-content a {
+    white-space: normal;
+}
+
+
+//
+// Buttons
+//
+
+.btn-yellow {
+    @include btn-color(#000000, $yellow-300);
+}
+
+
+//
+// Logo
+//
+
+.banner {
+    padding: 1.6rem 2rem;
+    text-align: center;
+    background-color: $grey-dk-250;
+    border-radius: $border-radius;
+    margin: 0;
+
+    @include mq(md) {
+        padding: 4rem 5rem;
+    }
+}
+
+
+//
+// Post
+//
+
+.post-date, .post-author, .post-tags {
+    color: $grey-dk-000;
+}
+
+.post-navigation {
+    display: block;
+    font-size: 14px;
+    text-align: center;
+
+    a {
+        display: inline-block;
+        margin: 1em 0;
+    }
+
+    .post-prev {
+        float: left;
+        text-align: left;
+    }
+
+    .post-next {
+        float: right;
+        text-align: right;
+    }
+}
+
+
+//
+// Tabs
+//
+
+ul.tab, ul.tab-content {
+    padding: 0;
+    margin: 0;
+
+    > li::before {
+        content: none;
+    }
+}
+
+ul.tab {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid $border-color;
+    list-style-type: none;
+    margin-bottom: 0.75rem;
+
+    > li {
+        display: flex;
+        margin: 0 10px -1px 0;
+
+        > a {
+            display: block;
+            padding: 0.4rem 1rem;
+            border-bottom: 1px solid $border-color;
+            color: $body-text-color;
+            background: none;
+        }
+
+        > a:hover {
+            background: none;
+            border-bottom: 1px solid $link-color;
+            color: $link-color;
+        }
+
+        &.tab-active > a {
+            background-size: 1px 2px;
+            border-bottom: 2px solid $link-color;
+            color: $link-color;
+        }
+    }
+}
+
+ul.tab-content {
+    > li {
+        display: none;
+
+        &.tab-active {
+            display: block;
+        }
+
+        .highlight {
+            margin-top: 0;
+        }
+    }
+
+    ul.tab > li > a {
+        font-size: 0.8rem;
+        padding: 0.3rem 0.9rem;
+    }
+}
+
+ul.tab.tab-merge {
+    width: 50%;
+    float: left;
+
+    + ul.tab-content > li > ul.tab {
+        width: 50%;
+        flex-direction: row-reverse;
+        margin-left: 50%;
+
+        > li {
+            margin: 0 0 -1px 10px;
+        }
+
+        + ul.tab-content {
+            clear: both;
+        }
+    }
+}
+
+
+//
+// Admonitions
+//
+
+.admonition {
+    border-left: $border-radius solid;
+    border-radius: $border-radius;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12), 0 3px 10px rgba(0, 0, 0, 0.08);
+
+    .admonition-title {
+        font-size: .75em;
+        font-weight: bold;
+        padding-left: .75rem;
+        padding-right: .75rem;
+        padding-top: .5rem;
+        padding-bottom: .5rem;
+    }
+
+    .admonition-content {
+        padding-left: .75rem;
+        padding-right: .75rem;
+        padding-top: .5rem;
+        padding-bottom: .75rem;
+
+        > :first-child {
+            margin-top: 0;
+        }
+
+        > :last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    &.admonition-note {
+        border-left-color: $blue-200;
+        background: rgba($blue-200, .2);
+
+        .admonition-title {
+            color: $blue-000;
+        }
+    }
+
+    &.admonition-tip {
+        border-left-color: $green-200;
+        background: rgba($green-200, .2);
+
+        .admonition-title {
+            color: $green-200;
+        }
+    }
+
+    &.admonition-warn {
+        border-left-color: $yellow-300;
+        background: rgba($yellow-300, .2);
+
+        .admonition-title {
+            color: $yellow-300;
+        }
+    }
+
+    &.admonition-important {
+        border-left-color: $red-200;
+        background: rgba($red-200, .2);
+
+        .admonition-title {
+            color: $red-200;
+        }
+    }
+}
