@@ -10,7 +10,7 @@ redirect_from: /docs/client_configuration.html
 
 SSL/TLS protocols allow the connection between two mediums (client-server) to be encrypted. Encryption lets you make sure that no third party is able to read the data or tamper with it.
 
-The SSL/TLS configuration is the same for both protocols, and it comes in two flavors:
+The SSL/TLS configuration is the same for both `MQTT3` and `MQTT5`, and it comes in two flavors:
 
 ## Simple TLS config  
 
@@ -41,7 +41,7 @@ Code
 
 | Parameter | Description | Default value |
 | ----------- | ----------- | ------------- |
-| `caCertificate` | the path to the CA X509 certificate resource | - |
+| `caCertificate` | The path to the CA X509 certificate resource. | - |
 
 ## Advanced TLS config  
 
@@ -78,7 +78,7 @@ Code
 
 | Parameter | Description | Default value |
 | ----------- | ----------- | ------------- |
-| `path` | The path to the truststore file or resource | - |
-| `password` | The password for the truststore file | - |
-| `type` | The type of the truststore | `JKS` |
-| `insecure` | Disables verification of the server hostname in the server certificate | `false` |
+| `path` | The path to the truststore file or resource. | - |
+| `password` | The password for the truststore file. | - |
+| `type` | The type of the truststore. | `JKS` |
+| `insecure` | Disables verification of the server hostname in the server certificate. | `false` |
