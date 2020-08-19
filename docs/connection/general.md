@@ -27,7 +27,7 @@ MQTT 5
 ```xml
 <mqtt:config name="MQTT5">
   <mqtt:mqtt5-connection host="test.mosquitto.org" port="1883" 
-             clientId="TestIdentifier" cleanSession="true"/>
+                        clientId="TestIdentifier" cleanSession="true"/>
 </mqtt:config>
 ```
 
