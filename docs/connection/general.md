@@ -7,6 +7,7 @@ nav_order: 1
 
 # General Configuration
 
+You can connect with an MQTT broker only providing the `host` parameter, all other parameter values will use default values as defined in the MQTT specification or reasonable defaults if not defined there. 
 
 {% capture tab_content %}
 
@@ -61,3 +62,13 @@ MQTT 3
 
 {% endcapture %}
 {% include tabs.html tab_group="mqtt-version" %}
+
+---
+
+| Parameter | Description | Default value |
+| ----------- | ----------- | ------------- |
+| `name` | The name of the connector configuration | none |
+| `host` | The host name or IP address of the MQTT server | none |
+| `port` | The port of the MQTT server | `1883` |
+| `identifier` | The unique identifier of the MQTT client | connector generates an identifier |
+| `cleanSession` | Determines if the client wants to start a new “clean” session (true) or wants to resume a previous session if present (false). This is called cleanStart in MQTT5 | `true` |
