@@ -38,10 +38,10 @@ MQTT 5
 
 | Parameter | Description | Default value |
 | ----------- | ----------- | ------------- |
-| `keepAlive` | The keep alive is the time interval in which the client sends a ping to the broker if no other MQTT packets are sent during this period of time. It is used to determine if the connection is still up. | `60` |
-| `keepAliveUnit` | The time unit used to interpret the `keepAlive` value | `SECONDS` |
+| `keepAlive` | Time interval in which the client sends a ping to the broker if no other MQTT packets are sent during this period of time. It is used to determine if the connection is still up. | `60` |
+| `keepAliveUnit` | The time unit used to interpret the `keepAlive` value. | `SECONDS` |
 | `connectTimeout` | The timeout between sending the Connect and receiving the ConnAck message. | - |
-| `connectTimeoutUnit` | The time unit used to interpret the `connectTimeout` value | `SECONDS` |
+| `connectTimeoutUnit` | The time unit used to interpret the `connectTimeout` value. | `SECONDS` |
 
 
 ====
@@ -73,10 +73,10 @@ MQTT 3
 
 | Parameter | Description | Default value |
 | ----------- | ----------- | ------------- |
-| `keepAlive` | The keep alive is the time interval in which the client sends a ping to the broker if no other MQTT packets are sent during this period of time. It is used to determine if the connection is still up. | `60` |
-| `keepAliveUnit` | The time unit used to interpret the `keepAlive` value | `SECONDS` |
+| `keepAlive` | Time interval in which the client sends a ping to the broker if no other MQTT packets are sent during this period of time. It is used to determine if the connection is still up. | `60` |
+| `keepAliveUnit` | The time unit used to interpret the `keepAlive` value. | `SECONDS` |
 | `connectTimeout` | The timeout between sending the Connect and receiving the ConnAck message. | - |
-| `connectTimeoutUnit` | The time unit used to interpret the `connectTimeout` value | `SECONDS` |
+| `connectTimeoutUnit` | The time unit used to interpret the `connectTimeout` value. | `SECONDS` |
 
 {% endcapture %}
 {% include tabs.html tab_group="mqtt-version" %}
