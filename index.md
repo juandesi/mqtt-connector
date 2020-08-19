@@ -16,11 +16,9 @@ Is a MQTT 5.0 and MQTT 3.1.1 compatible and feature-rich high-performance muleso
 
 ## Connector Features
 
-The MQTT protocol provides a lightweight method of carrying out messaging using a publish/subscribe model. This makes it suitable for Internet of Things messaging such as with low power sensors or mobile devices such as phones, embedded computers or microcontrollers.
+The MQTT protocol provides a lightweight method of carrying out messaging using a publish/subscribe model. This makes it suitable for Internet of Things messaging such as with low power sensors or mobile devices like phones, embedded computers or microcontrollers.
 
-The connector provides the following marked features. 
-
-NOTE: unmarked features are about to be implemented in the short term.
+The connector provides the following marked features: 
 
 - [x] MQTT 5 and MQTT 3 Broker Support
 - [x] Non-Blocking 
@@ -32,3 +30,5 @@ NOTE: unmarked features are about to be implemented in the short term.
 - [ ] WebSocket, Secure WebSocket
 - [ ] Proxy
 - [ ] Enhanced Authentication support (MQTT 5 only)
+
+NOTE: unmarked features are about to be implemented in the short term.
