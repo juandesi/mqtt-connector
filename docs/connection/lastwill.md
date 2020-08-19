@@ -7,9 +7,9 @@ nav_order: 2
 
 # Last Will and Testament
 
-The Last Will and Testament (LWT) also known as Will publish message. It's the message that is published by the broker if the client disconnected ungracefully or with the reason code `DISCONNECT_WITH_WILL_MESSAGE`.
+The Last Will and Testament (LWT), also known as 'will publish message', is the message that's published by the broker if the client disconnected ungracefully or with the reason code `DISCONNECT_WITH_WILL_MESSAGE`.
 
-The `topic` and `message` are the only mandatory properties for a Will publish message, all others have defaults or are optional.
+The only mandatory properties for a 'will publish message' are `topic` and `message`, all others have defaults or are optional.
 
 {% capture tab_content %}
 
