@@ -26,12 +26,9 @@ NOTE: unmarked features are about to be implemented in the short term.
 - [x] Non-Blocking 
 - [x] TCP Transport
 - [x] SSL/TLS 
+- [x] Simple Authentication (username/password)
 - [x] TLS mutual authentication (with client certificate)
 - [x] Automatic and configurable reconnect handling and message redelivery
 - [ ] WebSocket, Secure WebSocket
 - [ ] Proxy
-- [ ] MQTT 5 Pluggable Enhanced Authentication support 
-
-## Release Notes
-
-TODO
+- [ ] Enhanced Authentication support (MQTT 5 only)

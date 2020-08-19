@@ -2,12 +2,17 @@
 layout: default
 title: Installation
 nav_order: 2
-redirect_from: /docs/installation.html
 ---
 
 # Installation
 
 The MQTT Connector is available in a maven repository and can be setup easily in your mule project. You will need to include the following inside your `pom.xml` file.
+
+## Find it in Exchange
+
+find it in exchange TODO
+
+## Using Maven
 
 #### Repository
 Add this repository to your project repositories.
