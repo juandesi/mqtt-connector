@@ -9,32 +9,29 @@ nav_order: 1
 
 Messages are published with a `topic`. The MQTT broker needs the `topic` to route the message to subscribers. Hence the `topic` is mandatory for a publish message (it is the only required property).
 
-{% capture tab_content %}
-
-MQTT 5.0
-===
 
   {% capture tab_content %}
 
   Studio
   ===
-![mqtt5-connection]({{ site.baseurl }}/images/3-connection-mqtt5.png)
+![publish-config]({{ site.baseurl }}/images/publish-config.png)
   ====
 
   Code
   ===
 
 ```xml
-<mqtt:config name="MQTT3">
-<mqtt:mqtt5-connection host="test.mosquitto.org" port="1883" 
-            clientId="TestIdentifier" cleanSession="true"/>
-</mqtt:config>
+<mqtt:publish config-ref="mqtt-config" topic="test/topic"/>
 ```
 
   {% endcapture %}
   {% include tabs.html tab_group="module" %}
 
---- 
+
+{% capture tab_content %}
+
+MQTT 5.0
+===
 
 - [Topic](#topic)
 - [Message](#message)
@@ -46,28 +43,6 @@ MQTT 5.0
 
 MQTT 3.1.1
 ===
-
-  {% capture tab_content %}
-
-  Studio
-  ===
-![mqtt3-connection]({{ site.baseurl }}/images/3-connection-mqtt3.png)
-  ====
-
-  Code
-  ===
-
-```xml
-<mqtt:config name="MQTT3">
-<mqtt:mqtt3-connection host="test.mosquitto.org" port="1883" 
-            clientId="TestIdentifier" cleanSession="true"/>
-</mqtt:config>
-```
-
-  {% endcapture %}
-  {% include tabs.html tab_group="module" %}
-
---- 
 
 - [Topic](#topic)
 - [Message](#message)

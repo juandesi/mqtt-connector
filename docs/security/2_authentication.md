@@ -21,7 +21,7 @@ MQTT 5
   
   Studio
   ===
-![mqtt5-connection]({{ site.baseurl }}/images/3-connection-mqtt5.png)
+![mqtt5-userpass]({{ site.baseurl }}/images/mqtt5-user-pass.png)
   ====
 
   Code
@@ -57,7 +57,7 @@ MQTT 3
   
   Studio
   ===
-![mqtt3-connection]({{ site.baseurl }}/images/3-connection-mqtt3.png)
+![mqtt3-userpass]({{ site.baseurl }}/images/mqtt3-user-pass.png)
   ====
 
   Code
@@ -74,6 +74,7 @@ MQTT 3
   {% endcapture %}
   {% include tabs.html tab_group="module" %}
 
+---
 
 | Parameter | Description |
 | ----------- | ----------- |

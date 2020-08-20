@@ -20,7 +20,7 @@ MQTT 5
   
   Studio
   ===
-![mqtt5-connection]({{ site.baseurl }}/images/3-connection-mqtt5.png)
+![mqtt5-will]({{ site.baseurl }}/images/mqtt5-will.png)
   ====
 
   Code
@@ -66,7 +66,7 @@ MQTT 3
   
   Studio
   ===
-![mqtt3-connection]({{ site.baseurl }}/images/3-connection-mqtt3.png)
+![mqtt3-will]({{ site.baseurl }}/images/mqtt3-will.png)
   ====
 
   Code

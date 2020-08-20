@@ -18,7 +18,7 @@ The SSL/TLS configuration is the same for both `MQTT3` and `MQTT5`, and it comes
 
 Studio
 ===
-![mqtt3-connection]({{ site.baseurl }}/images/3-connection-mqtt3.png)
+![simple-tls]({{ site.baseurl }}/images/simpletls.png)
 ====
 
 Code
@@ -49,7 +49,7 @@ Code
 
 Studio
 ===
-![mqtt3-connection]({{ site.baseurl }}/images/3-connection-mqtt3.png)
+![tls]({{ site.baseurl }}/images/tls.png)
 ====
 
 Code
