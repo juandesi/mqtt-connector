@@ -2,7 +2,7 @@
 layout: default
 title: SSL/TLS
 nav_order: 1
-parent: Transport
+parent: Security
 redirect_from: /docs/client_configuration.html
 ---
 

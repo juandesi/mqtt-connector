@@ -7,7 +7,7 @@ nav_order: 1
 
 # Publish
 
-Messages are published with a topic. The MQTT broker needs the `topic` to route the message to subscribers. Hence the `topic` is mandatory for a publish message (it is the only required property).
+Messages are published with a `topic`. The MQTT broker needs the `topic` to route the message to subscribers. Hence the `topic` is mandatory for a publish message (it is the only required property).
 
 {% capture tab_content %}
 
@@ -40,12 +40,7 @@ MQTT 5.0
 - [Message](#message)
 - [Quality of Service (QoS)](#quality-of-service-qos)
 - [Retain](#retain)
-- [Message Expiry Interval](#message-expiry-interval)
-- [Payload Format Indicator](#payload-format-indicator)
-- [Content Type](#content-type)
-- [Response Topic](#response-topic)
-- [Correlation Data](#correlation-data)
-- [User Properties](#user-properties)
+- [Properties](#properties)
 
 ====
 
