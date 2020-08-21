@@ -14,6 +14,13 @@ The SSL/TLS configuration is the same for both `MQTT3` and `MQTT5`, and it comes
 
 ## Simple TLS config  
 
+The simple TLS configuration allows to setup TLS with a single CA certificate, without the need to create a truststore file for a single certificate.
+
+This is exceptionally good for testing, but is also good for production, if your use case fits.
+
+This configuration only requires one property: the CA Certificate Path, that must be the path to a X509 certificate.
+
+#### Example Simple TLS config
 {% capture tab_content %}
 
 Studio
@@ -39,9 +46,9 @@ Code
 
 ---
 
-| Parameter | Description | Default value |
-| ----------- | ----------- | ------------- |
-| `caCertificate` | The path to the CA X509 certificate resource. | - |
+| Parameter | Description | Default value | Expression |
+| ----------- | ----------- | ------------- | -------- |
+| `caCertificate` | The path to the CA X509 certificate resource. | - | `not supported` |
 
 ## Advanced TLS config  
 
@@ -74,11 +81,23 @@ Code
 
 ---
 
-#### TLS trust store
+### Tls Context 
 
-| Parameter | Description | Default value |
-| ----------- | ----------- | ------------- |
-| `path` | The path to the truststore file or resource. | - |
-| `password` | The password for the truststore file. | - |
-| `type` | The type of the truststore. | `JKS` |
-| `insecure` | Disables verification of the server hostname in the server certificate. | `false` |
+##### Enabled Protocols
+
+A comma separated list of protocols enabled for this context.
+{: .fs-2 }
+
+##### Enabled Cipher Suites
+A comma separated list of cipher suites enabled for this context.
+{: .fs-2 }
+
+##### TLS trust store
+
+| Parameter | Description | Default value | Expression |
+| ----------- | ----------- | ------------- | ------- |
+| `path` | The location to the trust store file or resource. | - | `not supported` |
+| `password` | The password for the trust store file. | - | `not supported` |
+| `type` | The type of the trust store. | `JKS` | `not supported` |
+| `algorithm` | The algorithm used by the trust store. | - | `not supported` |
+| `insecure` | Disables verification of the server hostname in the server certificate. | `false` | `not supported` |

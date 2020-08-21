@@ -11,6 +11,7 @@ The Last Will and Testament (LWT), also known as 'will publish message', is the 
 
 The only mandatory properties for a 'will publish message' are `topic` and `message`, all others have defaults or are optional.
 
+#### Example Last Will and Testament Configuration
 {% capture tab_content %}
 
 MQTT 5
@@ -38,24 +39,12 @@ MQTT 5
 
 ---
 
-| Property | Values | Default | MQTT Specification |
-| -------- | ------ | ------- | ------------------ |
-| `topic` | `String`/`MqttTopic` | mandatory | [3.1.3.3](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901069){:target="_blank"} |
-| `qos` | `MqttQos` | `AT_MOST_ONCE` | [3.1.2.6](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901041){:target="_blank"} |
-| `payload` | `byte[]`/`ByteBuffer` | - | [3.1.3.4](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901070){:target="_blank"} |
-| `retain` | `true`/`false` | `false` | [3.1.2.7](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901042){:target="_blank"} |
-| `messageExpiryInterval` | [`0` - `4_294_967_295`] | - | [3.1.3.2.4](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901064){:target="_blank"} |
-| `delayInterval` | [`0` - `4_294_967_295`] | `0` | [3.1.3.2.2](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901062){:target="_blank"} |
-| `payloadFormatIndicator` | `Mqtt5PayloadFormatIndicator` | - | [3.1.3.2.3](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901063){:target="_blank"} |
-| `contentType` | `String`/`MqttUtf8String` | - | [3.1.3.2.5](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901065){:target="_blank"} |
-| `responseTopic` | `String`/`MqttTopic` | - | [3.1.3.2.6](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901066){:target="_blank"} |
-| `correlationData` | `byte[]`/`ByteBuffer` | - | [3.1.3.2.7](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901067){:target="_blank"} |
-| `userProperties` | `Mqtt5UserProperties` | - | [3.1.3.2.8](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901068){:target="_blank"} |
+All properties of a Will publish message are the same as of a normal publish message for MQTT5 with the 
+addition of the `delayInterval`, described below.
 
-Message expiry can be disabled (the default).
-
-All properties of a Will publish message are the same as of a normal publish message with the 
-addition of the `delayInterval`
+| Property | Description | Expression |
+| ----------- | ----------- | ------- |
+| `delayInterval` | The Server delays publishing the Will Message until the Will `delayInterval` has passed or the Session ends, whichever happens first. If a new Network Connection to this Session is made before the Will `delayInterval` has passed, the Server MUST NOT send the Will Message | `not supported` |
 
 ====
 
@@ -84,12 +73,10 @@ MQTT 3
 
 ---
 
-| Property | Values | Default | MQTT Specification |
-| -------- | ------ | ------- | ------------------ |
-| `topic` | `String`/`MqttTopic` | mandatory | [3.1.3.3](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901069){:target="_blank"} |
-| `qos` | `MqttQos` | `AT_MOST_ONCE` | [3.1.2.6](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901041){:target="_blank"} |
-| `payload` | `byte[]`/`ByteBuffer` | - | [3.1.3.4](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901070){:target="_blank"} |
-| `retain` | `true`/`false` | `false` | [3.1.2.7](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901042){:target="_blank"} |
+All properties of a Will publish message are the same as of a normal publish message for MQTT3.
 
 {% endcapture %}
 {% include tabs.html tab_group="mqtt-version" %}
+
+
+The difference between MQTT Publish properties and Will message properties is that the later properties **do not** support expressions, because this would generate dynamic connections for each different will message property set.

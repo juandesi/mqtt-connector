@@ -31,4 +31,7 @@ The connector provides the following marked features:
 - [ ] Proxy
 - [ ] Enhanced Authentication support (MQTT 5 only)
 
-NOTE: unmarked features are about to be implemented in the short term.
+Coming soon
+{: .label .label-yellow }
+
+#### Unmarked features are going to be implemented in the short term.
