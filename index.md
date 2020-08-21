@@ -10,7 +10,7 @@ permalink: /
 Is a MQTT 5.0 and MQTT 3.1.1 compatible and feature-rich high-performance mulesoft connector.
 {: .fs-5 .fw-300 }
 
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [Learn more about MQTT](http://mqtt.org/){: .btn .fs-5 .mb-4 .mb-md-0 }
+[Get started now](docs/1_quickstart.html){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 } [Learn more about MQTT](http://mqtt.org/){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
 

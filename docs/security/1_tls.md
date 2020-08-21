@@ -46,7 +46,7 @@ Code
 
 ---
 
-| Parameter | Description | Default value | Expression |
+| Property | Description | Default value | Expression |
 | ----------- | ----------- | ------------- | -------- |
 | `caCertificate` | The path to the CA X509 certificate resource. | - | `not supported` |
 
@@ -96,10 +96,17 @@ The TLS Context enables to set all security files and configuration in a single 
 
 A comma separated list of protocols enabled for this context.
 {: .fs-3 }
+| Property | Default value | Expression |
+| ----------- | ------------- | -------- |
+| `enabledProtocols` | - | `not supported` |
 
 ##### Enabled Cipher Suites
 A comma separated list of cipher suites enabled for this context.
 {: .fs-3 }
+
+| Property | Default value | Expression |
+| ----------- | ------------- | -------- |
+| `enabledCipherSuites` | - | `not supported` |
 
 ##### TLS trust store
 

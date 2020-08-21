@@ -8,8 +8,10 @@ nav_order: 3
 # Connection
 
 A MQTT connection declares the MQTT broker/server that will receive and send the MQTT messages and how that connection with the broker is established.
+{: .fs-5 .fw-300 }
 
 There are 2 types of connections: `MQTT 5` and `MQTT 3`. The general configuration is very similar, but we will see later that `MQTT 5` introduced new features that are only supported by this type of connection.
+{: .fs-5 .fw-300 }
 
 ## Connector Configuration 
 

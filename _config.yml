@@ -1,5 +1,5 @@
 
-title: mqtt connector
+title: MQTT Connector
 email: juandesimoni@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   mqtt connector is an MQTT 5.0 and MQTT 3.1.1 compatible and feature-rich 
