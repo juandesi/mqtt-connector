@@ -9,7 +9,6 @@ nav_order: 1
 
 Messages are published with a `topic`. The MQTT broker needs the `topic` to route the message to subscribers. Hence the `topic` is mandatory for a publish message (it is the only required property).
 
-
   {% capture tab_content %}
 
   Studio
@@ -69,11 +68,14 @@ subscribers.
 ## Message
 
 Is the payload of the publish message that carries the actual application data.
-MQTT is data-agnostic so you can use any format for the payload. 
+MQTT is data-agnostic so you can use any format for the mesaage content. 
+
+By default, the message content is taken from the `payload` of the incoming mule message, but you can customize it using a DataWeave script.
+
 
 | Property | Default | Type |
 | -------- | ------- | ---- |
-| `message` | - | Binary |
+| `message` | `#[payload]` | Binary |
 
 ## Quality of Service (QoS)
 
@@ -204,4 +206,3 @@ MQTT 3.1.1
 ===
 
 {% endcapture %}{% include tabs.html tab_group="mqtt-version" tab_no_header=true %}
->>>>>>> Stashed changes
