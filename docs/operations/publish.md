@@ -7,7 +7,12 @@ nav_order: 1
 
 # Publish
 
+This operation as the name implies, **publishes** or sends a message to an MQTT broker and returns immediately to the flow after passing the request to an async client.
+
 Messages are published with a `topic`. The MQTT broker needs the `topic` to route the message to subscribers. Hence the `topic` is mandatory for a publish message (it is the only required property).
+
+This operation accepts both MQTT5 and MQTT3 configurations, the example below works for both MQTT5 and MQTT3. For specific features the documentation below the example describes the behavior for each version of the protocol, choose the one that fits for your project.
+{: .fs-3 }
 
   {% capture tab_content %}
 
@@ -26,6 +31,7 @@ Messages are published with a `topic`. The MQTT broker needs the `topic` to rout
   {% endcapture %}
   {% include tabs.html tab_group="module" %}
 
+---
 
 {% capture tab_content %}
 
@@ -61,9 +67,9 @@ Hence the topic is mandatory for a Publish message (it is the only required prop
 A topic can be hierarchically structured in multiple topic levels (divided by `/`) enabling easier filtering for
 subscribers.
 
-| Property | Default | Type |
-| -------- | ------- | ---- |
-| `topic` | - | String |
+| Property | Default | Type | Expressions |
+| -------- | ------- | ---- | ---------- | 
+| `topic` | - | String | `supported` |
 
 ## Message
 
@@ -73,9 +79,9 @@ MQTT is data-agnostic so you can use any format for the mesaage content.
 By default, the message content is taken from the `payload` of the incoming mule message, but you can customize it using a DataWeave script.
 
 
-| Property | Default | Type |
-| -------- | ------- | ---- |
-| `message` | `#[payload]` | Binary |
+| Property | Default | Type | Expressions | 
+| -------- | ------- | ---- | ----- | 
+| `message` | `#[payload]` | Binary | `required` |
 
 ## Quality of Service (QoS)
 
@@ -94,18 +100,18 @@ as MQTT is an asynchronous protocol (which is an advantage because it decouples 
 system more robust and scalable).
 Different brokers might provide different guarantees for end-to-end communication (especially if they are clustered).
 
-| Property | Default | Type |
-| -------- | ------- | ---- |
-| `qos` | `AT_MOST_ONCE` | String Enum <br/> .`AT_MOST_ONCE` <br/> .`AT_LEAST_ONCE` <br/> .`EXACTLY_ONCE` | 
+| Property | Default | Type | Expressions |
+| -------- | ------- | ---- | ---------- | 
+| `qos` | `AT_MOST_ONCE` | String Enum <br/> .`AT_MOST_ONCE` <br/> .`AT_LEAST_ONCE` <br/> .`EXACTLY_ONCE` | `supported` |
 
 ## Retain
 
 The retain flag indicates that the message should be stored at the broker for its topic.
 New subscribers then get the last retained message on that topic even if they were not connected when it was published.
 
-| Property | Default | Type |
-| -------- | ------- | ---- |
-| `retain` | `false` | Boolean | 
+| Property | Default | Type | Expression |
+| -------- | ------- | ---- | ---------- | 
+| `retain` | `false` | Boolean | `supported` |
 
 
 
@@ -118,30 +124,38 @@ MQTT 5.0
 
 ## Properties
 
-The properties supported for the publish command are the followings:
-
 MQTT 5 ONLY
 {: .label .label-green }
 
+MQTT 5.0 protocol adds many properties, which can add metadata for the broker or subscriber to change behavior in certain scenarios.
+
+For the publish operation, all the properties are bundled into a single object that must be created using DataWeave and then is decomposed by the connector while executing. The parameter can be configured in the `Properties` tab (see below).
+
+| Property | Default | Type | Expression |
+| -------- | ------- | ---- | ---------- | 
+| `properties` | - | Object | `required` |
+
   {% capture tab_content %}
 
-  Studio
+  In Line Declaration
   ===
-![mqtt3-connection]({{ site.baseurl }}/images/3-connection-mqtt3.png)
+![publish-properties-inline]({{ site.baseurl }}/images/publish-properties-inline.png)
+
   ====
 
-  Code
+  Using Transform Message 
   ===
+  If needed, you can take advantage of metadata by creating a variable (in this case called props) and mapping the values to necessary properties. Once created the variable can be referenced from the properties parameter in the publish operation.
+  {: .fs-2 } 
 
-```xml
-<mqtt:config name="MQTT3">
-<mqtt:mqtt3-connection host="test.mosquitto.org" port="1883" 
-            clientId="TestIdentifier" cleanSession="true"/>
-</mqtt:config>
-```
+![publish-properties]({{ site.baseurl }}/images/publish-properties.png)
+
 
   {% endcapture %}
   {% include tabs.html tab_group="module" %}
+
+The properties supported for the publish command are the followings: 
+{: .fs-5 }
 
 ### Message Expiry Interval
 
@@ -149,7 +163,7 @@ The message expiry interval is the time interval (in seconds) the message will b
 
 | Property | Default | Type |
 | -------- | ------- | ---- |
-| `messageExpiryInterval` | | - | Number | 
+| `messageExpiryInterval` | - | Number | 
 
 ### Payload Format Indicator
 
@@ -167,7 +181,7 @@ It can be any string, but it is recommended to use a MIME type to ensure interop
 
 | Property | Default | Type |
 | -------- | ------- | ---- |
-| `contentType` | (will use the **payload** media type if present) | `String` |
+| `contentType` | (will use the **payload** media type if present) | String |
 
 ### Response Topic
 
@@ -181,7 +195,7 @@ can use the [correlation data](#correlation-data).
 
 | Property | Default | Type |
 | -------- | ------- | ---- |
-| `responseTopic` | - | `String` |
+| `responseTopic` | - | String |
 
 ### Correlation Data
 
@@ -190,15 +204,16 @@ If it is part of the request message then the responder copies it to the respons
 
 | Property | Default | Type |
 | -------- | ------- | ---- |
-| `correlationData` | - | `String` |
+| `correlationData` | - | String |
 
 ### User Properties
 
-User Properties are user defined name and value pairs which are sent with the MQTT5 publish message.
+User Properties are user defined name and value pairs which are sent with the MQTT5 publish message. As long as you don’t exceed the maximum message size, you can use an unlimited number of user properties to add metadata to MQTT messages and pass information between publisher, broker, and subscriber
 
 | Property | Default | Type |
 | -------- | ------- | ---- |
-| `userProperties` | - | `String value pairs` |
+| `userProperties` | - | Object of string value pairs |
+
 
 ====
 
@@ -206,3 +221,9 @@ MQTT 3.1.1
 ===
 
 {% endcapture %}{% include tabs.html tab_group="mqtt-version" tab_no_header=true %}
+
+
+--- 
+
+For more information about publish properties, check the [Oasis MQTT5 standard](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901109).
+{: .fs-2 }
