@@ -6,11 +6,11 @@ parent: Security
 ---
 
 # Authentication
-Authentication is the process of verifying an user identity. The MQTT connector provides different way to authenticate with MQTT brokers and it is possible to support multiple authentication schemes at once.
+Authentication is the process of verifying an user identity. The MQTT connector provides different ways to authenticate with MQTT brokers and it is possible to support multiple authentication schemes at once.
 
 ## Simple Authentication 
 
-MQTT provides username/password authentication as part of the protocol. Be sure to use network encryption if you are using this option otherwise the username and password will be vulnerable to interception. 
+MQTT provides username/password authentication as part of the protocol. Be sure to use network encryption if you are using this option; otherwise, the username and password will be vulnerable to interception. 
 
 {% capture tab_content %}
 
@@ -45,8 +45,8 @@ is required if using simple authentication.
 
 | Parameter | Description |
 | ----------- | ----------- |
-| `username` | username to uniquely identify with the broker. **optional** |
-| `password` | string of characters used for authenticating a user on a computer system. **optional**  |
+| `username` | Username to uniquely identify with the broker. **Optional** |
+| `password` | String of characters used for authenticating a user on a computer system. **Optional**  |
 
 ====
 
@@ -78,8 +78,8 @@ MQTT 3
 
 | Parameter | Description |
 | ----------- | ----------- |
-| `username` | username to uniquely identify with the broker. Username is **required** if using simple auth on MQTT3|
-| `password` | string of characters used for authenticating a user on a computer system. Password is **optional**  |
+| `username` | Username to uniquely identify with the broker. Username is **required** if using simple auth on MQTT3.|
+| `password` | String of characters used for authenticating a user on a computer system. Password is **optional**. |
 
 {% endcapture %}
 {% include tabs.html tab_group="mqtt-version" %}
@@ -88,10 +88,10 @@ MQTT 3
 
 ## TLS Mutual Authentication
 
-Another popular way of authenticating clients is via client certificates and can be use as in addition or as an alternative to using username and password.
+Another popular way of authenticating clients is via client certificates and can be used in addition or as an alternative to using username and password.
 
 In cryptography, a client certificate is a type of digital certificate that is used by client systems to make authenticated requests to a remote server.
-Client certificates play a key role in many mutual authentication designs, providing strong assurances of a requester’s identity. [Wikipedia](https://en.wikipedia.org/wiki/Client_certificate)
+Client certificates play a key role in many mutual authentication designs, providing strong assurances of a requester’s identity ([Wikipedia])(https://en.wikipedia.org/wiki/Client_certificate).
 
 A client certificate identifies the client just like the server certificate identifies the server.
 
