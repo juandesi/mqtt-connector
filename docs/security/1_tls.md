@@ -8,15 +8,15 @@ redirect_from: /docs/client_configuration.html
 
 # SSL/TLS
 
-SSL/TLS protocols allow the connection between two mediums (client-server) to be encrypted. Encryption lets you make sure that no third party is able to read the data or tamper with it.
+SSL/TLS protocols allow the connection between two mediums (client-server) to be encrypted. Encryption helps you make sure that no third party is able to read the data or tamper with it.
 
 The SSL/TLS configuration is the same for both `MQTT3` and `MQTT5`, and it comes in two flavors:
 
 ## Simple TLS config  
 
-The simple TLS configuration allows to setup TLS with a single CA certificate, without the need to create a truststore file for a single certificate.
+The simple TLS configuration allows to setup TLS with a single CA certificate, without the need of creating a truststore file for a single certificate.
 
-This is exceptionally good for testing, but is also good for production, if your use case fits.
+This is exceptionally good for testing, but is also good for production if your use case fits.
 
 This configuration only requires one property: the CA Certificate Path, that must be the path to a X509 certificate.
 
@@ -56,7 +56,7 @@ The advanced TLS configuration is based on the TLS context with a trust store fi
 
 The TLS Context can be defined in line (like in the example below), but can also be declared as a reference to a global defined one.
 
-It is important to know that the TLS Context has the capability to configure a key store, but for setting up TLS will only require a trust store, the key store will be used to perform transport level authentication (Mutual TLS authentication) that is described in the [Authentication](2_authentication.md#tls-mutual-authentication) section.
+It is important to know that the TLS Context has the capability to configure a key store, but for setting up TLS, only a trust store will br required. The key store will be used to perform transport level authentication (Mutual TLS authentication) that is described in the [Authentication](2_authentication.md#tls-mutual-authentication) section.
 
 {% capture tab_content %}
 
@@ -87,7 +87,7 @@ Code
 
 ---
 
-### Tls Context 
+### TLS Context 
 
 The TLS Context enables to set all security files and configuration in a single object. This can be also declared globally and referenced.
 {: .fs-3 }
@@ -96,6 +96,7 @@ The TLS Context enables to set all security files and configuration in a single 
 
 A comma separated list of protocols enabled for this context.
 {: .fs-3 }
+
 | Property | Default value | Expression |
 | ----------- | ------------- | -------- |
 | `enabledProtocols` | - | `not supported` |
@@ -123,10 +124,10 @@ Contains all the configuration for a trust store file that stores CA certificate
 
 ##### TLS key store
 
-Contains all the configuration for a key store is used to store users credentials.
+Contains all the configuration for a key store that is used to store users credentials.
 {: .fs-3 }
 
-The keystore is used to setup Mutual TLS authentication. see [Authentication](2_authentication.md#tls-mutual-authentication).
+The keystore is used to setup Mutual TLS authentication. See [Authentication](2_authentication.md#tls-mutual-authentication).
 {: .fs-3 }
 
 | Property | Description | Default value | Expression |
