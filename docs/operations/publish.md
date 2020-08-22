@@ -38,6 +38,7 @@ This operation accepts both MQTT5 and MQTT3 configurations, the example below wo
 MQTT 5.0
 ===
 
+- [Connector Configuration](#connector-configuration)
 - [Topic](#topic)
 - [Message](#message)
 - [Quality of Service (QoS)](#quality-of-service-qos)
@@ -49,6 +50,7 @@ MQTT 5.0
 MQTT 3.1.1
 ===
 
+- [Connector Configuration](#connector-configuration)
 - [Topic](#topic)
 - [Message](#message)
 - [Quality of Service (QoS)](#quality-of-service-qos)
@@ -58,6 +60,13 @@ MQTT 3.1.1
 
 ***
 
+## Connector Configuration
+
+The name of the configuration to use with the operation.
+
+| Property | Default | Type | Expressions |
+| -------- | ------- | ---- | ---------- | 
+| `config-ref` | - | String | `not supported` |
 
 ## Topic
 
