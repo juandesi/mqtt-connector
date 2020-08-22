@@ -7,11 +7,11 @@ nav_order: 1
 
 # Publish
 
-This operation as the name implies, **publishes** or sends a message to an MQTT broker and returns immediately to the flow without returning anything after passing the request to an async client. If publish operation is not successful, it will throw a mule error.
+This operation as the name implies, **publishes** or sends a message to a MQTT broker and returns immediately to the flow without returning anything after passing the request to an async client. If the publish operation is not successful, it will throw a mule error.
 
 Messages are published with a `topic`. The MQTT broker needs the `topic` to route the message to subscribers. Hence the `topic` is mandatory for a publish message (it is the only required property).
 
-This operation accepts both MQTT5 and MQTT3 configurations, the example below works for both MQTT5 and MQTT3. For specific features the documentation below the example describes the behavior for each version of the protocol, choose the one that fits for your project.
+This operation accepts MQTT5 and MQTT3 configurations; the example below works for both of them. For specific features the documentation below the example describes the behavior for each version of the protocol; choose the one that fits in your project.
 
   {% capture tab_content %}
 
@@ -61,7 +61,7 @@ MQTT 3.1.1
 
 ## Connector Configuration
 
-The name of the configuration to use with the operation.
+The name of the configuration set to use with the operation.
 
 | Property | Default | Type | Expressions |
 | -------- | ------- | ---- | ---------- | 
@@ -82,7 +82,7 @@ subscribers.
 ## Message
 
 Is the payload of the publish message that carries the actual application data.
-MQTT is data-agnostic so you can use any format for the mesaage content. 
+MQTT is data-agnostic so you can use any format for the message content. 
 
 By default, the message content is taken from the `payload` of the incoming mule message, but you can customize it using a DataWeave script.
 
@@ -98,9 +98,9 @@ The QoS level should be chosen based on the use case.
 
 | QoS 0 | AT MOST ONCE  | Messages are not redelivered after a failure. Some messages may be lost. |
 | QoS 1 | AT LEAST ONCE | Messages are redelivered after a failure if they were not acknowledged by the broker. Some messages may be delivered more than once (initial delivery attempt + redelivery attempt(s)). |
-| QoS 2 | EXACTLY ONCE  | Messages are redelivered after a failure if they were not acknowledged by the broker. The broker additionally filters duplicate messages based on message ids. |
+| QoS 2 | EXACTLY ONCE  | Messages are redelivered after a failure if they were not acknowledged by the broker. The broker additionally filters duplicated messages based on message ids. |
 
-The trade-off between the QoS levels is lower or higher latency and the amount of state that has to be stored on sender 
+The trade-off between the QoS levels is the lower or higher latency and the amount of state that has to be stored on sender 
 and receiver.
 
 Keep in mind that the MQTT QoS levels cover guarantees between the client and the broker (not directly the subscribers)
@@ -114,7 +114,7 @@ Different brokers might provide different guarantees for end-to-end communicatio
 
 ## Retain
 
-The retain flag indicates that the message should be stored at the broker for its topic.
+The retain flag indicates that the message should be stored in the broker for its topic.
 New subscribers then get the last retained message on that topic even if they were not connected when it was published.
 
 | Property | Default | Type | Expression |
@@ -135,7 +135,7 @@ MQTT 5.0
 MQTT 5 ONLY
 {: .label .label-green }
 
-MQTT 5.0 protocol adds many properties, which can add metadata for the broker or subscriber to change behavior in certain scenarios.
+MQTT 5.0 protocol adds many properties which can add metadata for the broker or subscriber to change behavior in certain scenarios.
 
 For the publish operation, all the properties are bundled into a single object that must be created using DataWeave and then is decomposed by the connector while executing. The parameter can be configured in the `Properties` tab (see below).
 
@@ -153,7 +153,7 @@ For the publish operation, all the properties are bundled into a single object t
 
   Using Transform Message 
   ===
-  If needed, you can take advantage of metadata by creating a variable (in this case called props) and mapping the values to necessary properties. Once created the variable can be referenced from the properties parameter in the publish operation.
+  If needed, you can take advantage of metadata by creating a variable (in this case called 'props') and mapping the values to necessary properties. Once created, the variable can be referenced from the properties parameter in the publish operation.
   {: .fs-2 } 
 
 ![publish-properties]({{ site.baseurl }}/images/publish-properties.png)
@@ -162,7 +162,7 @@ For the publish operation, all the properties are bundled into a single object t
   {% endcapture %}
   {% include tabs.html tab_group="module" %}
 
-The properties supported for the publish command are the followings: 
+The properties supported for the publish command are the following: 
 {: .fs-5 }
 
 ### Message Expiry Interval
@@ -194,7 +194,7 @@ It can be any string, but it is recommended to use a MIME type to ensure interop
 ### Response Topic
 
 Although MQTT is a publish/subscribe protocol, it can be used with a request/response pattern.
-MQTT's request/response is different from synchronous request/response (like HTTP) as it has still all MQTT 
+MQTT's request/response is different from synchronous request/response (like HTTP) as it still has all MQTT 
 characteristics like asynchronism, decoupling of sender and receiver and 1-to-many communication.
 Requesting is done by subscribing to a response topic and then publishing to a request topic.
 The publish includes the response topic so a responder knows to which topic it should publish the response.
