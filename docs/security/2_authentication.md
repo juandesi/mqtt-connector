@@ -91,7 +91,7 @@ MQTT 3
 Another popular way of authenticating clients is via client certificates and can be used in addition or as an alternative to using username and password.
 
 In cryptography, a client certificate is a type of digital certificate that is used by client systems to make authenticated requests to a remote server.
-Client certificates play a key role in many mutual authentication designs, providing strong assurances of a requester’s identity ([Wikipedia])(https://en.wikipedia.org/wiki/Client_certificate).
+Client certificates play a key role in many mutual authentication designs, providing strong assurances of a requester’s identity ([Wikipedia](https://en.wikipedia.org/wiki/Client_certificate) ).
 
 A client certificate identifies the client just like the server certificate identifies the server.
 
