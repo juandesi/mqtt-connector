@@ -7,7 +7,7 @@ nav_order: 5
 
 # Security
 
-Security in MQTT is divided in multiple layers. Each layer prevents different kinds of attacks. The goal of MQTT is to provide a lightweight and easy-to-use communication protocol for the Internet of Things. The protocol itself specifies only a few security mechanisms. MQTT implementations commonly use other state-of-the-art security standards: for example, SSL/TLS for transport security. Since security is difficult, it makes sense to build upon generally accepted standards.
+Security in MQTT is divided in multiple layers. Each layer prevents different kinds of attacks. The goal of MQTT is to provide a lightweight and easy-to-use communication protocol for the Internet of Things. The protocol itself specifies only a few security mechanisms. MQTT implementations commonly use other state-of-the-art security standards, for example SSL/TLS for transport security. Since security is difficult, it makes sense to build upon generally accepted standards.
 {: .fs-5 .fw-300 }
 
 ## Transport Level 
