@@ -7,12 +7,11 @@ nav_order: 1
 
 # Publish
 
-This operation as the name implies, **publishes** or sends a message to an MQTT broker and returns immediately to the flow after passing the request to an async client.
+This operation as the name implies, **publishes** or sends a message to an MQTT broker and returns immediately to the flow without returning anything after passing the request to an async client. If publish operation is not successful, it will throw a mule error.
 
 Messages are published with a `topic`. The MQTT broker needs the `topic` to route the message to subscribers. Hence the `topic` is mandatory for a publish message (it is the only required property).
 
 This operation accepts both MQTT5 and MQTT3 configurations, the example below works for both MQTT5 and MQTT3. For specific features the documentation below the example describes the behavior for each version of the protocol, choose the one that fits for your project.
-{: .fs-3 }
 
   {% capture tab_content %}
 
@@ -236,3 +235,5 @@ MQTT 3.1.1
 
 For more information about publish properties, check the [Oasis MQTT5 standard](https://docs.oasis-open.org/mqtt/mqtt/v5.0/os/mqtt-v5.0-os.html#_Toc3901109).
 {: .fs-2 }
+
+## Errors
