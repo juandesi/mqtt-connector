@@ -32,6 +32,6 @@ The connector provides the following marked features:
 - [ ] Enhanced Authentication support (MQTT 5 only)
 
 Coming soon
-{: .label .label-yellow }
+{: .label .label-blue }
 
 #### Unmarked features are going to be implemented in the short term.

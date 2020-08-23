@@ -47,7 +47,7 @@ MQTT 5
 
 ---
 
-All properties of a Will publish message are the same as of a normal publish message for MQTT5 with the 
+All properties of a Will publish message are the same as of a normal [publish message]({{ site.baseurl }}/docs/operations/publish.html) for MQTT5 with the 
 addition of the `delayInterval`, described below.
 
 | Property | Description | Expression |
@@ -83,9 +83,14 @@ MQTT 3
 
 ---
 
-All properties of a Will publish message are the same as of a normal publish message for MQTT3.
+All properties of a Will publish message are the same as of a normal [publish message]({{ site.baseurl }}/docs/operations/publish.html) for MQTT3.
 
 {% endcapture %}
 {% include tabs.html tab_group="mqtt-version" %}
 
 The difference between MQTT Publish properties and Will message properties is that the later properties **do not** support expressions, because this would generate dynamic connections for each different will message property set.
+
+---
+
+For more info about publish properties see [Publish]({{ site.baseurl }}/docs/operations/publish.html)
+{: .fs-3 }
