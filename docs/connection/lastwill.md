@@ -29,8 +29,16 @@ MQTT 5
 
 ```xml
 <mqtt:config name="MQTT5">
-  <mqtt:mqtt5-connection host="test.mosquitto.org" port="1883" 
-             clientId="TestIdentifier" cleanSession="true"/>
+  <mqtt:mqtt5-connection host="test.mosquitto.org">
+    <mqtt:mqtt5-will message="I'm out!" topic="topic/will" contentType="text/plain" 
+                     qosLevel="AT_LEAST_ONCE" correlationData="data1" messageExpiryInterval="30"
+                     payloadFormatIndicator="UTF8" responseTopic="response/topic" 
+                     delayInterval="10" retain="true">
+      <mqtt:user-properties >
+        <mqtt:user-property key="custom" value="property" />
+      </mqtt:user-properties>
+    </mqtt:mqtt5-will>
+  </mqtt:mqtt5-connection>
 </mqtt:config>
 ```
 
@@ -63,8 +71,10 @@ MQTT 3
 
 ```xml
 <mqtt:config name="MQTT3">
-  <mqtt:mqtt3-connection host="test.mosquitto.org" port="1883" 
-             clientId="TestIdentifier" cleanSession="true"/>
+  <mqtt:mqtt3-connection host="test.mosquitto.org">
+    <mqtt:mqtt3-will message="I'm out !" topic="test/mule/topic" 
+                     retain="true" qosLevel="EXACTLY_ONE"/>
+  </mqtt:mqtt3-connection>
 </mqtt:config>
 ```
 
@@ -77,6 +87,5 @@ All properties of a Will publish message are the same as of a normal publish mes
 
 {% endcapture %}
 {% include tabs.html tab_group="mqtt-version" %}
-
 
 The difference between MQTT Publish properties and Will message properties is that the later properties **do not** support expressions, because this would generate dynamic connections for each different will message property set.

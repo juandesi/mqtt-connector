@@ -24,7 +24,9 @@ This operation accepts MQTT5 and MQTT3 configurations; the example below works f
   ===
 
 ```xml
-<mqtt:publish config-ref="mqtt-config" topic="test/topic"/>
+<mqtt:publish config-ref="MQTT5" topic="test/topic">
+    <mqtt:message>#[payload]</mqtt:message>
+</mqtt:publish>
 ```
 
   {% endcapture %}

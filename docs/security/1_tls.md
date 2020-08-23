@@ -35,7 +35,7 @@ Code
 <mqtt:config name="MQTT5">
     <mqtt:mqtt5-connection host="test.mosquitto.org" port="8883">
         <mqtt:tls-configuration>
-            <mqtt:simple-tls-config caCertificate="ca.crt" />
+            <mqtt:simple-tls-config caCertificate="resources/mosquitto.org.crt" />
         </mqtt:tls-configuration>
     </mqtt:mqtt5-connection>
 </mqtt:config>
@@ -74,7 +74,8 @@ Code
         <mqtt:tls-configuration>
             <mqtt:advanced-tls-config>
                 <tls:context>
-                    <tls:trust-store path="truststore.jks" type="jks" password="changeit" insecure="false"/>
+                    <tls:trust-store path="resources/truststore.jks" type="jks"
+                                     password="changeit" insecure="false"/>
                 </tls:context>
             </mqtt:advanced-tls-config>
         </mqtt:tls-configuration>

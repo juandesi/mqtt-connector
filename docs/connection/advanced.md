@@ -24,8 +24,11 @@ Code
 
 ```xml
 <mqtt:config name="MQTT5">
-<mqtt:mqtt5-connection host="test.mosquitto.org" port="1883" 
-            clientId="TestIdentifier" cleanSession="true"/>
+    <mqtt:mqtt5-connection host="test.mosquitto.org" keepAlive="10" connectTimeout="10">
+        <reconnection failsDeployment="true">
+            <reconnect frequency="2000" count="2"/>
+        </reconnection>
+    </mqtt:mqtt5-connection>
 </mqtt:config>
 ```
 

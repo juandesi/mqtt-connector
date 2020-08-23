@@ -2,7 +2,7 @@
 layout: default
 title: Connection
 has_children: true
-nav_order: 34
+nav_order: 3
 ---
 
 # Connection
