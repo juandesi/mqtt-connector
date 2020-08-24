@@ -5,7 +5,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   mqtt connector is an MQTT 5.0 and MQTT 3.1.1 compatible and feature-rich 
   high-performance mulesoft connector.
 baseurl: "/mqtt-connector" # the subpath of your site, e.g. /blog
-url: "http://www.juan.desi" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://www.juan.desi" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: juandesi
 github_username:  juandesi
 

@@ -59,7 +59,7 @@ MQTT 3.1.1
 
 {% endcapture %}{% include tabs.html tab_group="mqtt-version" %}
 
-***
+---
 
 ## Connector Configuration
 
