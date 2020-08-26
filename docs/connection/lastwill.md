@@ -73,7 +73,7 @@ MQTT 3
 <mqtt:config name="MQTT3">
   <mqtt:mqtt3-connection host="test.mosquitto.org">
     <mqtt:mqtt3-will message="I'm out !" topic="test/mule/topic" 
-                     retain="true" qosLevel="EXACTLY_ONE"/>
+                     retain="true" qosLevel="EXACTLY_ONCE"/>
   </mqtt:mqtt3-connection>
 </mqtt:config>
 ```
