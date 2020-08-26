@@ -74,7 +74,7 @@ Code
 <flow name="OnNewMessage">
     <mqtt:listener config-ref="mosquitto-config">
         <mqtt:subscriptions>
-            <mqtt:subscription topic="test/mule/topic"/>
+            <mqtt:subscription topicFilter="test/mule/topic"/>
         </mqtt:subscriptions>
     </mqtt:listener>
     <logger level="INFO" message="#[payload]"/>

@@ -169,7 +169,7 @@ The properties supported for the publish command are the following:
 
 ### Message Expiry Interval
 
-The message expiry interval is the time interval (in seconds) the message will be queued for subscribers. If no message expiry interval is provided, then is assumed disabled.
+Defines the period of time __(in seconds)__ that the broker stores the PUBLISH message for any matching subscribers that are not currently connected . When no message expiry interval is set, the broker must store the message for matching subscribers indefinitely. When the `retained=true` option is set on the PUBLISH message, this interval also defines how long a message is retained on a topic.
 
 | Property | Default | Type |
 | -------- | ------- | ---- |

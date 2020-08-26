@@ -46,6 +46,3 @@ In the example above, a configuration named `MQTT5-CONFIGURATION` is declared wi
 In the MQTT connector for each configuration declared, a connection is established and cached so that one specific configuration always gets the same connection. The connection is maintained until the configuration itself is stopped.
 
 This means that if you declare a configuration with a connection and it's referenced in two different operations, the **exact same** instance is going to be used to execute both operations. This is important to know for cases when the user **DON'T** want to share the same resource.
-
-It is a good practice to separate subscription configurations from publish configurations, but if required configurations can be shared without a problem in most scenarios. 
-
