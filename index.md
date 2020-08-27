@@ -18,7 +18,7 @@ Is a MQTT 5.0 and MQTT 3.1.1 compatible and feature-rich high-performance muleso
 
 The MQTT protocol provides a lightweight method of carrying out messaging using a publish/subscribe model. This makes it suitable for Internet of Things messaging such as with low power sensors or mobile devices like phones, embedded computers or microcontrollers.
 
-The connector provides the following marked features: 
+The connector provides the following features: 
 
 - [x] MQTT 5 and MQTT 3 Broker Support
 - [x] Non-Blocking 
@@ -26,12 +26,13 @@ The connector provides the following marked features:
 - [x] SSL/TLS 
 - [x] Simple Authentication (username/password)
 - [x] TLS mutual authentication (with client certificate)
-- [x] Automatic and configurable reconnect handling and message redelivery
-- [ ] WebSocket, Secure WebSocket
-- [ ] Proxy
-- [ ] Enhanced Authentication support (MQTT 5 only)
+- [x] Configurable reconnect handling and message redelivery
+- [x] Will Message
+- [x] Resume Session
 
 Coming soon
 {: .label .label-blue }
 
-#### Unmarked features are going to be implemented in the short term.
+- [ ] WebSocket, Secure WebSocket
+- [ ] Proxy Support
+- [ ] Enhanced Authentication support for MQTT 5

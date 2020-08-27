@@ -122,6 +122,3 @@ Code
 Now go and run your app! You'll start to see log messages from the subscription flow that are being published by your publish flow. 
 
 That's all!
-
-Download the test app [here](https://drive.google.com/file/d/1X9N3PRvlSgM6kvZSs-JIk7F3KXBMSSdB/view?usp=sharing) and try it out. You can import it in Studio. (crafted for runtime 4.2.0)
-{: .fs-2 }

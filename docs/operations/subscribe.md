@@ -36,14 +36,22 @@ Code
 
 MQTT 5
 ===
-
+- [Subscriptions](#subscriptions)
+- [Message](#mule-message)
+- [Errors](#errors)
 
 ====
 
 MQTT 3
 ===
 
+- [Subscriptions](#subscriptions)
+- [Message](#mule-message)
+- [Errors](#errors)
+
 {% endcapture %}{% include tabs.html tab_group="mqtt-version" %}
+
+---
 
 ## Subscriptions
 
@@ -67,9 +75,9 @@ Topic filters are used to subscribe to topics and receive publications. Topic fi
 
 The Quality of Service (QoS) level is an agreement between the sender of a message and the receiver of a message that defines the guarantee of delivery for a specific message. There are 3 QoS levels in MQTT:
 
-| QoS 0 | AT MOST ONCE  |  |
-| QoS 1 | AT LEAST ONCE |  |
-| QoS 2 | EXACTLY ONCE  |  |
+| QoS 0 | AT MOST ONCE  | Messages are received once, some messages may be lost. |
+| QoS 1 | AT LEAST ONCE | Messages are not acknowledged by the broker. Some messages may be received more than once |
+| QoS 2 | EXACTLY ONCE  | Messages are acknowledged by the broker, additionally filters duplicate messages based on message ids. |
 
 The broker transmits a published message to subscribing clients using the QoS level. If the subscription defines a lower QoS than the publishing client, the broker transmits the message with the lower quality of service.
 
@@ -77,12 +85,30 @@ The broker transmits a published message to subscribing clients using the QoS le
 | -------- | ------- | ---- | ---------- | 
 | `qos` | `AT_MOST_ONCE` | String Enum <br/> .`AT_MOST_ONCE` <br/> .`AT_LEAST_ONCE` <br/> .`EXACTLY_ONCE` | `supported` |
 
+### Reconnection and Resume Session
+
+{% capture tab_content %}
+
+MQTT 5
+===
+
+Clean Start + Session Expiry
+
+====
+
+MQTT 3
+===
+
+Clean session
+
+{% endcapture %}{% include tabs.html tab_group="mqtt-version" tab_no_header=true %}
+
 
 ## Mule Message
 
-As said before, each message received by the subscriptions will trigger a flow execution with a new **Mule Message**. It's of importance to understand the structure of that **Mule Message** to develop the flow and process the message correctly.
+As said before, each message received by the subscriptions will trigger a flow execution with a new **Mule Message**. It's important to understand the structure of the dispatching **Mule Message** to process the message correctly while developing the flow.
 
-The Mule Message is composed of a payload and it's attributes (metadata of the payload), let's take a look to both in the **On New Message** source.
+The Mule Message is composed of a payload and it's attributes (metadata of the payload), let's see how they both look in the **On New Message** source.
 
 {% capture tab_content %}
 
@@ -92,11 +118,7 @@ MQTT 5
 
 The payload carries the actual message binary data. MQTT is data-agnostic so the payload can be in any data format.
 
-MQTT 5 Introduced the concept of Content Type for the messages, which is optional, but if present in the incoming message it will be automatically set when the message is dispatched. For example: if the incoming message payload is a JSON object and the content type was set by the sender, then we can process it with data weave without setting anything else. 
-
-#### JSON Data Weave Example
-
-IMAGE
+MQTT 5 Introduced the concept of Content Type for the messages, which is optional, but if present in the incoming message it will be automatically set when the message is dispatched. For example: if the incoming message payload is a JSON object and the content type was set by the sender, then it can be processed with Data Weave without setting anything else (because Data Weave **requires** the Content Type of the payload to understand it).
 
 On contrary, if the Content Type was not set by the sender then you can work with the raw binary message or explicitly provide the Content Type for the message.
 
@@ -104,14 +126,9 @@ If you know that all messages are in a particular format you can set the content
 
 #### Setting Output MIME Type
 
-IMAGE
+![output-mimetype]({{ site.baseurl }}/images/output-mimetype.png)
 
 You can also use the mule set payload message processor if your case is more dynamic.
-
-### Attributes
-
-The attributes contain metadata associated to the payload
-
 
 ====
 
@@ -126,14 +143,68 @@ You can work with the raw binary message or if you know that all messages are in
 
 #### Setting Output MIME Type
 
-IMAGE
+![output-mimetype]({{ site.baseurl }}/images/output-mimetype.png)
 
 You can also use the mule set payload message processor if your case is more dynamic.
 
+{% endcapture %}{% include tabs.html tab_group="mqtt-version" tab_no_header=true %}
+
+
 ### Attributes
 
-The attributes contain metadata associated to the payload
+The attributes contain metadata associated to the payload, this metadata consists in a set of properties that are bundled in a message.
+
+#### Example attributes usage
+
+IMAGE
+
+##### Topic
+The topic the message was sent to. This is useful to find the topic when the subscriber used a topic filter to match `n` topics
+{: .fs-2 .fw-300 }
+
+| Attribute | Type | Accessible With |
+| -------- | ---- | ---------- |
+| `topic` | String | `attributes.topic` |
+
+##### Qos
+
+The qos level of the receiving message. the MAX qos level is the one defined in the subscription. e.g.: if a message is sent with QoS 2 but the subscription is done with QoS 1, the receiving message QoS will be 1.
+{: .fs-2 .fw-300 }
+
+| Attribute | Type | Accessible With |
+| -------- | ---- | ---------- |
+| `qos` | String Enum <br/> .`AT_MOST_ONCE` <br/> .`AT_LEAST_ONCE` <br/> .`EXACTLY_ONCE` | `attributes.qos` |
+
+##### Retain
+
+Indicates that the message should be stored at the broker for its topic.
+{: .fs-2 .fw-300 }
+
+| Attribute | Type | Accessible With |
+| -------- | ---- | ---------- |
+| `retain`| Boolean | `attributes.retain` |
+
+{% capture tab_content %}
+
+MQTT 5
+===
+
+
+| Attribute | Description | Type | Accessible With |
+| -------- | ------- | ---- | ---------- |
+| `contentType` | Describes the encoding of the payload. | String | `attributes.contentType` |
+| `payloadFormatIndicator` | Indicates if the payload is text or binary data | String enum <br/> .`UNSPECIFIED` <br/> `UTF_8` | `attributes.payloadFormatIndicator` |
+| `correlationData` | Correlates a request to its response | String | `attributes.correlationData` |
+| `messageExpiryInterval` | The time interval (in seconds) the message is queued for subscribers. | Boolean | `attributes.messageExpiryInterval` |
+| `responseTopic` |  A topic so a responder knows to which topic it should publish the response. Generally used to stablish a request/response pattern. | String | `attributes.responseTopic` |
+| `userProperties` | A set of user defined name and value pairs | Boolean | `attributes.userProperties.['NAME_OF_CUSTOM_PROPERTY']` |
+====
+
+MQTT 3
+===
 
 {% endcapture %}{% include tabs.html tab_group="mqtt-version" tab_no_header=true %}
 
 --- 
+
+## Errors
