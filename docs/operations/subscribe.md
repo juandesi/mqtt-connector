@@ -83,7 +83,7 @@ The broker transmits a published message to subscribing clients using the QoS le
 
 | Property | Default | Type | Expressions |
 | -------- | ------- | ---- | ---------- | 
-| `qos` | `AT_MOST_ONCE` | String Enum <br/> .`AT_MOST_ONCE` <br/> .`AT_LEAST_ONCE` <br/> .`EXACTLY_ONCE` | `supported` |
+| `qosLevel` | `AT_MOST_ONCE` | String Enum <br/> .`AT_MOST_ONCE` <br/> .`AT_LEAST_ONCE` <br/> .`EXACTLY_ONCE` | `supported` |
 
 ### Reconnection and Resume Session
 
@@ -156,7 +156,17 @@ The attributes contain metadata associated to the payload, this metadata consist
 
 #### Example attributes usage
 
-IMAGE
+{% capture tab_content %}
+
+MQTT 5
+===
+![input-attributes-mqtt5]({{ site.baseurl }}/images/input-attributes-mqtt5.png)
+====
+MQTT 3
+===
+![input-attributes-mqtt3]({{ site.baseurl }}/images/input-attributes-mqtt3.png)
+{% endcapture %}{% include tabs.html tab_group="mqtt-version" tab_no_header=true %}
+--- 
 
 ##### Topic
 The topic the message was sent to. This is useful to find the topic when the subscriber used a topic filter to match `n` topics
@@ -189,15 +199,69 @@ Indicates that the message should be stored at the broker for its topic.
 MQTT 5
 ===
 
+##### Payload Format Indicator
 
-| Attribute | Description | Type | Accessible With |
-| -------- | ------- | ---- | ---------- |
-| `contentType` | Describes the encoding of the payload. | String | `attributes.contentType` |
-| `payloadFormatIndicator` | Indicates if the payload is text or binary data | String enum <br/> .`UNSPECIFIED` <br/> `UTF_8` | `attributes.payloadFormatIndicator` |
-| `correlationData` | Correlates a request to its response | String | `attributes.correlationData` |
-| `messageExpiryInterval` | The time interval (in seconds) the message is queued for subscribers. | Boolean | `attributes.messageExpiryInterval` |
-| `responseTopic` |  A topic so a responder knows to which topic it should publish the response. Generally used to stablish a request/response pattern. | String | `attributes.responseTopic` |
-| `userProperties` | A set of user defined name and value pairs | Boolean | `attributes.userProperties.['NAME_OF_CUSTOM_PROPERTY']` |
+Indicates if the payload is text or binary data, used in conjunction with the content type if the payload format is `UTF8` encoded text.	
+{: .fs-2 .fw-300 }
+
+| Attribute | Type | Accessible With |
+| -------- | ---- | ---------- |
+| `payloadFormatIndicator` | String enum <br/> .`UNSPECIFIED` <br/> `UTF_8` | `attributes.payloadFormatIndicator` |
+
+##### Content Type 
+
+The Content Type identifies the kind of UTF-8 text encoded payload. When the Payload Format Indicator is set to 1, a MIME content type descriptor is expected (but not mandatory). Any valid UTF-8 String can be used.
+{: .fs-2 .fw-300 }
+
+If the Content Type attribute is present will be automatically set to the payload.
+{: .fs-2 .fw-300 }
+
+| Attribute | Type | Accessible With |
+| -------- | ---- | ---------- |
+| `contentType`| String | `attributes.contentType` |
+
+##### Response Topic
+
+The response topic field represents the topic on which the responses from the receivers of the message are expected. Used to implement a request-response pattern using MQTT.
+{: .fs-2 .fw-300 }
+
+| Attribute | Type | Accessible With |
+| -------- | ---- | ---------- |
+| `responseTopic` | String | `attributes.responseTopic` |
+
+##### Correlation Data
+
+Correlation data is optional binary data that follows the response topic. The sender of the request uses the data for identifying to which specific request a response that is received later relates. Response topics can be used without correlation data.
+Using the correlation makes it possible for the original sender of the request to handle asynchronous responses that can possibly be sent from multiple receivers. This data is irrelevant to the MQTT broker and only functions as a means to identify the relationship between sender and receiver.
+{: .fs-2 .fw-300 }
+
+| Attribute | Type | Accessible With |
+| -------- | ---- | ---------- |
+| `correlationData` | String | `attributes.correlationData` |
+
+##### Message Expiry Interval
+
+Defines the period of time that the broker stores a published message for subscribers that are not currently connected.
+{: .fs-2 .fw-300 }
+
+| Attribute | Type | Accessible With |
+| -------- | ---- | ---------- |
+| `messageExpiryInterval` | Number | `attributes.messageExpiryInterval` |
+
+##### User Properties
+
+User properties are basic UTF-8 string key-value pairs that you can be appended to a message. As long as the maximum message size is not exceeded, an unlimited number of user properties can be passed as information between publisher, broker, and subscriber.
+{: .fs-2 .fw-300 }
+
+The User Properties feature is very similar to the HTTP headers concept.
+{: .fs-2 .fw-300 }
+
+| Attribute | Type | Accessible With |
+| -------- | ---- | ---------- |
+| `userProperties` | Object | `attributes.userProperties.['NAME_OF_CUSTOM_PROPERTY']` |
+
+
+
 ====
 
 MQTT 3
