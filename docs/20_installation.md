@@ -9,10 +9,6 @@ nav_order: 3
 The MQTT Connector is available in a maven repository and can be setup easily in your mule project. You will need to include the following snippet inside your `pom.xml` file.
 {: .fs-5 .fw-300 }
 
-## Find it in Exchange
-
-find it in exchange TODO
-
 ## Using Maven
 
 #### Repository
@@ -21,9 +17,8 @@ Add this repository to your project repositories.
 
 ```xml
 <repository>
-    <id>mvnrepository</id>
-    <name>mvnrepository</name>
-    <url>http://www.mvnrepository.com</url>
+    <id>mqtt-connector-repo</id>
+    <url>https://raw.github.com/juandesi/mule-mqtt-connector/mvn-repo/</url>
 </repository>
 ```
 
@@ -48,7 +43,7 @@ Snapshots can be obtained from the same repository.
 <dependency>
     <groupId>desi.juan</groupId>
     <artifactId>mule-mqtt-connector</artifactId>
-    <version>2.0.0-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
     <classifier>mule-plugin</classifier>
 </dependency>
 ```
